@@ -1,0 +1,335 @@
+[
+  {
+    "id": "pipeline",
+    "name": "Pipeline",
+    "country": "Hawaii, US",
+    "lat": 21.6653,
+    "lng": -158.0529,
+    "noaa_station": "1612340",
+    "shore_direction": 0
+  },
+  {
+    "id": "mavericks",
+    "name": "Mavericks",
+    "country": "California, US",
+    "lat": 37.4958,
+    "lng": -122.5014,
+    "noaa_station": "9414290",
+    "shore_direction": 315
+  },
+  {
+    "id": "jaws",
+    "name": "Jaws (Peahi)",
+    "country": "Hawaii, US",
+    "lat": 20.9408,
+    "lng": -156.3122,
+    "noaa_station": "1615680",
+    "shore_direction": 350
+  },
+  {
+    "id": "teahupo-o",
+    "name": "Teahupo'o",
+    "country": "Tahiti, French Polynesia",
+    "lat": -17.8474,
+    "lng": -149.2661,
+    "noaa_station": null,
+    "shore_direction": 220
+  },
+  {
+    "id": "jeffreys-bay",
+    "name": "Jeffreys Bay",
+    "country": "South Africa",
+    "lat": -34.0493,
+    "lng": 24.9179,
+    "noaa_station": null,
+    "shore_direction": 225
+  },
+  {
+    "id": "snapper-rocks",
+    "name": "Snapper Rocks",
+    "country": "Queensland, Australia",
+    "lat": -28.0046,
+    "lng": 153.4320,
+    "noaa_station": null,
+    "shore_direction": 90
+  },
+  {
+    "id": "hossegor",
+    "name": "Hossegor",
+    "country": "France",
+    "lat": 43.6694,
+    "lng": -1.4343,
+    "noaa_station": null,
+    "shore_direction": 270
+  },
+  {
+    "id": "nazare",
+    "name": "Nazaré",
+    "country": "Portugal",
+    "lat": 39.6013,
+    "lng": -9.0714,
+    "noaa_station": null,
+    "shore_direction": 270
+  },
+  {
+    "id": "uluwatu",
+    "name": "Uluwatu",
+    "country": "Bali, Indonesia",
+    "lat": -8.8291,
+    "lng": 115.0849,
+    "noaa_station": null,
+    "shore_direction": 230
+  },
+  {
+    "id": "cloudbreak",
+    "name": "Cloudbreak",
+    "country": "Fiji",
+    "lat": -17.9832,
+    "lng": 177.3128,
+    "noaa_station": null,
+    "shore_direction": 220
+  },
+  {
+    "id": "trestles",
+    "name": "Trestles (Lowers)",
+    "country": "California, US",
+    "lat": 33.3803,
+    "lng": -117.5900,
+    "noaa_station": "9410230",
+    "shore_direction": 225
+  },
+  {
+    "id": "bells-beach",
+    "name": "Bells Beach",
+    "country": "Victoria, Australia",
+    "lat": -38.3700,
+    "lng": 144.2820,
+    "noaa_station": null,
+    "shore_direction": 180
+  },
+  {
+    "id": "supertubes",
+    "name": "Supertubes",
+    "country": "South Africa",
+    "lat": -34.0452,
+    "lng": 24.9226,
+    "noaa_station": null,
+    "shore_direction": 225
+  },
+  {
+    "id": "mundaka",
+    "name": "Mundaka",
+    "country": "Spain",
+    "lat": 43.4076,
+    "lng": -2.6973,
+    "noaa_station": null,
+    "shore_direction": 0
+  },
+  {
+    "id": "puerto-escondido",
+    "name": "Puerto Escondido",
+    "country": "Mexico",
+    "lat": 15.8642,
+    "lng": -97.0731,
+    "noaa_station": null,
+    "shore_direction": 180
+  },
+  {
+    "id": "raglan",
+    "name": "Raglan",
+    "country": "New Zealand",
+    "lat": -37.8018,
+    "lng": 174.8757,
+    "noaa_station": null,
+    "shore_direction": 270
+  },
+  {
+    "id": "sunset-beach",
+    "name": "Sunset Beach",
+    "country": "Hawaii, US",
+    "lat": 21.6783,
+    "lng": -158.0399,
+    "noaa_station": "1612340",
+    "shore_direction": 350
+  },
+  {
+    "id": "peniche",
+    "name": "Peniche (Supertubos)",
+    "country": "Portugal",
+    "lat": 39.3556,
+    "lng": -9.3804,
+    "noaa_station": null,
+    "shore_direction": 270
+  },
+  {
+    "id": "el-gringo",
+    "name": "Punta de Lobos",
+    "country": "Chile",
+    "lat": -34.4167,
+    "lng": -72.0000,
+    "noaa_station": null,
+    "shore_direction": 225
+  },
+  {
+    "id": "keramas",
+    "name": "Keramas",
+    "country": "Bali, Indonesia",
+    "lat": -8.6667,
+    "lng": 115.3667,
+    "noaa_station": null,
+    "shore_direction": 90
+  },
+  {
+    "id": "margaret-river",
+    "name": "Margaret River",
+    "country": "Western Australia",
+    "lat": -33.9561,
+    "lng": 114.9987,
+    "noaa_station": null,
+    "shore_direction": 225
+  },
+  {
+    "id": "tavarua",
+    "name": "Tavarua (Restaurants)",
+    "country": "Fiji",
+    "lat": -17.8610,
+    "lng": 177.1945,
+    "noaa_station": null,
+    "shore_direction": 315
+  },
+  {
+    "id": "anchor-point",
+    "name": "Anchor Point",
+    "country": "Morocco",
+    "lat": 30.4172,
+    "lng": -9.6516,
+    "noaa_station": null,
+    "shore_direction": 315
+  },
+  {
+    "id": "banzai-pipeline",
+    "name": "Backdoor Pipeline",
+    "country": "Hawaii, US",
+    "lat": 21.6650,
+    "lng": -158.0521,
+    "noaa_station": "1612340",
+    "shore_direction": 0
+  },
+  {
+    "id": "g-land",
+    "name": "G-Land (Grajagan)",
+    "country": "Java, Indonesia",
+    "lat": -8.6333,
+    "lng": 114.3833,
+    "noaa_station": null,
+    "shore_direction": 180
+  },
+  {
+    "id": "playa-grande-mdp",
+    "name": "Playa Grande",
+    "country": "Mar del Plata, Argentina",
+    "lat": -38.0228,
+    "lng": -57.5369,
+    "noaa_station": null,
+    "shore_direction": 90
+  },
+  {
+    "id": "punta-mogotes",
+    "name": "Punta Mogotes",
+    "country": "Mar del Plata, Argentina",
+    "lat": -38.0619,
+    "lng": -57.5289,
+    "noaa_station": null,
+    "shore_direction": 70
+  },
+  {
+    "id": "la-perla-mdp",
+    "name": "La Perla",
+    "country": "Mar del Plata, Argentina",
+    "lat": -38.0070,
+    "lng": -57.5370,
+    "noaa_station": null,
+    "shore_direction": 90
+  },
+  {
+    "id": "somo",
+    "name": "Somo",
+    "country": "Cantabria, Spain",
+    "lat": 43.4681,
+    "lng": -3.8347,
+    "noaa_station": null,
+    "shore_direction": 350
+  },
+  {
+    "id": "liencres",
+    "name": "Liencres (Valdearenas)",
+    "country": "Cantabria, Spain",
+    "lat": 43.4501,
+    "lng": -3.9836,
+    "noaa_station": null,
+    "shore_direction": 355
+  },
+  {
+    "id": "oyambre",
+    "name": "Playa de Oyambre",
+    "country": "Cantabria, Spain",
+    "lat": 43.3912,
+    "lng": -4.3679,
+    "noaa_station": null,
+    "shore_direction": 345
+  },
+  {
+    "id": "berria",
+    "name": "Playa de Berria",
+    "country": "Cantabria, Spain",
+    "lat": 43.4397,
+    "lng": -3.4825,
+    "noaa_station": null,
+    "shore_direction": 5
+  },
+  {
+    "id": "arnia",
+    "name": "Playa de Arnia",
+    "country": "Cantabria, Spain",
+    "lat": 43.4133,
+    "lng": -4.0267,
+    "noaa_station": null,
+    "shore_direction": 350
+  },
+  {
+    "id": "meron",
+    "name": "Playa de Merón",
+    "country": "Cantabria, Spain",
+    "lat": 43.3951,
+    "lng": -4.4067,
+    "noaa_station": null,
+    "shore_direction": 340
+  },
+  {
+    "id": "laredo",
+    "name": "Laredo (La Salvé)",
+    "country": "Cantabria, Spain",
+    "lat": 43.4200,
+    "lng": -3.4400,
+    "noaa_station": null,
+    "shore_direction": 0
+  },
+  {
+    "id": "noja",
+    "name": "Noja (Trengandín)",
+    "country": "Cantabria, Spain",
+    "lat": 43.4875,
+    "lng": -3.5261,
+    "noaa_station": null,
+    "shore_direction": 5
+  },
+  {
+    "id": "ajo",
+    "name": "Ajo (Antuerta)",
+    "country": "Cantabria, Spain",
+    "lat": 43.4950,
+    "lng": -3.6003,
+    "noaa_station": null,
+    "shore_direction": 350
+  }
+]

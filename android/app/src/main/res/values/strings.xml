@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Surf Forecast</string>
+    <string name="title_activity_main">Surf Forecast</string>
+    <string name="package_name">com.surfproject.app</string>
+    <string name="custom_url_scheme">com.surfproject.app</string>
+</resources>

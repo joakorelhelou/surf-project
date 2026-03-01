@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react';
 import type { Spot } from '../types';
+import { t } from '../i18n';
 
 interface SpotSearchProps {
   spots: Spot[];
@@ -39,7 +40,7 @@ export default function SpotSearch({ spots, onSelect }: SpotSearchProps) {
           }}
           onFocus={() => setOpen(true)}
           onBlur={() => setTimeout(() => setOpen(false), 150)}
-          placeholder="Search surf spots…"
+          placeholder={t.search.placeholder}
           className="flex-1 text-sm outline-none bg-transparent text-gray-800 placeholder-gray-400"
         />
         {query && (

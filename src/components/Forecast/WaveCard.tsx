@@ -1,4 +1,5 @@
 import type { HourlyMarine } from '../../types';
+import { t } from '../../i18n';
 
 function degToCompass(deg: number): string {
   const dirs = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
@@ -20,7 +21,7 @@ function wavePower(swellHeight: number, swellPeriod: number): { kw: number; clas
 
 function formatTime(iso: string): string {
   const d = new Date(iso);
-  return d.toLocaleString([], { weekday: 'short', hour: '2-digit', minute: '2-digit' });
+  return d.toLocaleString(t.locale, { weekday: 'short', hour: '2-digit', minute: '2-digit' });
 }
 
 interface WaveCardProps {
@@ -29,8 +30,8 @@ interface WaveCardProps {
 
 export default function WaveCard({ hourly }: WaveCardProps) {
   // Map all 7-day hourly entries
-  const entries = hourly.time.map((t, i) => ({
-    time: t,
+  const entries = hourly.time.map((time, i) => ({
+    time,
     waveHeight: hourly.wave_height[i],
     wavePeriod: hourly.wave_period[i],
     waveDir: hourly.wave_direction[i],
@@ -48,17 +49,17 @@ export default function WaveCard({ hourly }: WaveCardProps) {
   return (
     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-4">
       <h3 className="text-base font-semibold text-gray-900 mb-3 flex items-center gap-2">
-        <span>🌊</span> Waves (7 days)
+        <span>🌊</span> {t.waves.title}
       </h3>
       <div className="overflow-x-auto">
         <table className="w-full text-sm min-w-[480px]">
           <thead>
             <tr className="text-xs text-gray-500 border-b border-gray-100">
-              <th className="text-left pb-2 font-medium">Time</th>
-              <th className="text-right pb-2 font-medium">Height</th>
-              <th className="text-right pb-2 font-medium">Period</th>
-              <th className="text-right pb-2 font-medium">Direction</th>
-              <th className="text-right pb-2 font-medium">Power (kW/m)</th>
+              <th className="text-left pb-2 font-medium">{t.waves.colTime}</th>
+              <th className="text-right pb-2 font-medium">{t.waves.colHeight}</th>
+              <th className="text-right pb-2 font-medium">{t.waves.colPeriod}</th>
+              <th className="text-right pb-2 font-medium">{t.waves.colDirection}</th>
+              <th className="text-right pb-2 font-medium">{t.waves.colPower}</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-50">

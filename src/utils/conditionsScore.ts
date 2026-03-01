@@ -206,6 +206,85 @@ export function scoreLabel(score: number): string {
   return 'Poor';
 }
 
+/** Generates a 2–3 sentence plain-Spanish explanation for a set of conditions. */
+export function describeConditionsEs(input: ConditionsInput): string {
+  const { waveHeight, swellHeight, swellPeriod, swellDirection, windSpeed, windDirection, shoreDirection } = input;
+
+  // --- Frase de olas ---
+  const heightDesc =
+    waveHeight < 0.3 ? 'en calma'
+    : waveHeight < 0.6 ? `muy pequeña con ${waveHeight.toFixed(1)} m`
+    : waveHeight < 1.0 ? `pequeña con ${waveHeight.toFixed(1)} m`
+    : waveHeight < 1.5 ? `a la altura del pecho con ${waveHeight.toFixed(1)} m`
+    : waveHeight < 2.5 ? `sólida con ${waveHeight.toFixed(1)} m`
+    : waveHeight < 4.0 ? `grande con ${waveHeight.toFixed(1)} m`
+    : `muy grande con ${waveHeight.toFixed(1)} m`;
+
+  const periodDesc =
+    swellPeriod < 6  ? 'poco potente y picada'
+    : swellPeriod < 8  ? `un período corto de ${swellPeriod.toFixed(0)} s (oleaje de viento)`
+    : swellPeriod < 10 ? `un período moderado de ${swellPeriod.toFixed(0)} s`
+    : swellPeriod < 12 ? `un buen período de ${swellPeriod.toFixed(0)} s`
+    : swellPeriod < 14 ? `un largo período de groundswell de ${swellPeriod.toFixed(0)} s`
+    : `un excelente período de groundswell de ${swellPeriod.toFixed(0)} s`;
+
+  const qualityRatio = waveHeight > 0 ? swellHeight / waveHeight : 0;
+  const qualityDesc =
+    qualityRatio > 0.7 ? ', mayormente limpia y organizada'
+    : qualityRatio > 0.4 ? ', con una mezcla aceptable de swell y chop'
+    : waveHeight > 0.3 ? ', mayormente picada con poco swell organizado'
+    : '';
+
+  const swellDirScore = scoreSwellDirection(swellDirection, shoreDirection);
+  const swellDirDesc =
+    swellDirScore > 85 ? ''
+    : swellDirScore > 65 ? ' El ángulo del swell está ligeramente desviado pero sigue siendo surfeable.'
+    : swellDirScore > 40 ? ' El swell llega con un ángulo significativo, reduciendo la calidad de las olas en este spot.'
+    : ' El swell viene casi paralelo a la costa — mal ángulo para este spot.';
+
+  const waveSentence =
+    waveHeight < 0.3
+      ? 'El océano está prácticamente en calma, sin olas surfeables.'
+      : `Las olas están ${heightDesc} con ${periodDesc}${qualityDesc}.${swellDirDesc}`;
+
+  // --- Frase de viento ---
+  const offshoreScore = scoreOffshoreAngle(windDirection, shoreDirection);
+  const windDirDesc =
+    offshoreScore > 70 ? 'sopla offshore, perfilando las caras de las olas'
+    : offshoreScore > 50 ? 'es cross-shore — no ideal pero manejable'
+    : offshoreScore > 30 ? 'es parcialmente onshore, agitando la superficie'
+    : 'es onshore, destrozando las olas';
+
+  const windSentence =
+    windSpeed < 8
+      ? 'La superficie está vidriosa — condiciones de viento perfectas.'
+      : `El viento es de ${windSpeed.toFixed(0)} km/h y ${windDirDesc}.`;
+
+  // --- Frase resumen ---
+  const swellDirScoreVal = scoreSwellDirection(swellDirection, shoreDirection);
+  const windEffect = clamp(windSpeed / 20, 0, 1);
+  const effectiveOffshoreRatio = (offshoreScore * windEffect + 50 * (1 - windEffect)) / 100;
+  const weighted = [
+    { name: 'potencia del oleaje',  ratio: scoreSwellPower(swellHeight, swellPeriod)  / 100 },
+    { name: 'dirección del swell',  ratio: swellDirScoreVal                           / 100 },
+    { name: 'calidad del swell',    ratio: scoreSwellQuality(swellHeight, waveHeight) / 100 },
+    { name: 'velocidad del viento', ratio: scoreWindSpeed(windSpeed)                  / 100 },
+    { name: 'dirección del viento', ratio: effectiveOffshoreRatio                          },
+  ];
+
+  const worst = weighted.reduce((a, b) => (a.ratio < b.ratio ? a : b));
+  const best  = weighted.reduce((a, b) => (a.ratio > b.ratio ? a : b));
+  const total = scoreConditions(input);
+
+  const summarySentence =
+    total >= 75 ? `Condiciones excelentes — ${best.name} es el punto más destacado.`
+    : total >= 55 ? `Se puede tener una buena sesión, aunque ${worst.name} está bajando la puntuación.`
+    : total >= 35 ? `Condiciones regulares — ${worst.name} es el principal factor limitante ahora mismo.`
+    : `Condiciones malas, principalmente por ${worst.name}.`;
+
+  return `${waveSentence} ${windSentence} ${summarySentence}`;
+}
+
 /** Returns a Tailwind text + bg color pair for the score. */
 export function scoreColor(score: number): { bar: string; text: string } {
   if (score >= 75) return { bar: 'bg-emerald-500', text: 'text-emerald-700' };

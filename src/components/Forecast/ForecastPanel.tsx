@@ -5,6 +5,7 @@ import ConditionsCard from './ConditionsCard';
 import WaveCard from './WaveCard';
 import WindCard from './WindCard';
 import TideCard from './TideCard';
+import { t } from '../../i18n';
 
 interface ForecastPanelProps {
   spot: Spot;
@@ -42,7 +43,7 @@ export default function ForecastPanel({ spot, onClose }: ForecastPanelProps) {
         <button
           onClick={onClose}
           className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 text-gray-500 transition-colors"
-          aria-label="Close forecast"
+          aria-label={t.forecast.closeLabel}
         >
           ✕
         </button>

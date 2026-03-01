@@ -2,19 +2,20 @@ import { useState } from 'react';
 import type { HourlyMarine, HourlyWind } from '../../types';
 import {
   scoreConditions,
-  scoreLabel,
   scoreColor,
   describeConditions,
+  describeConditionsEs,
   type ConditionsInput,
 } from '../../utils/conditionsScore';
+import { t, currentLang, getScoreLabel } from '../../i18n';
 
 function formatTime(iso: string): string {
   const d = new Date(iso);
-  return d.toLocaleString([], { weekday: 'short', hour: '2-digit', minute: '2-digit' });
+  return d.toLocaleString(t.locale, { weekday: 'short', hour: '2-digit', minute: '2-digit' });
 }
 
 function timeOnly(iso: string): string {
-  return new Date(iso).toLocaleString([], { hour: '2-digit', minute: '2-digit' });
+  return new Date(iso).toLocaleString(t.locale, { hour: '2-digit', minute: '2-digit' });
 }
 
 function dayLabel(iso: string): string {
@@ -22,9 +23,9 @@ function dayLabel(iso: string): string {
   const today = new Date();
   const tomorrow = new Date();
   tomorrow.setDate(today.getDate() + 1);
-  if (d.toDateString() === today.toDateString()) return 'Today';
-  if (d.toDateString() === tomorrow.toDateString()) return 'Tomorrow';
-  return d.toLocaleString([], { weekday: 'long', month: 'short', day: 'numeric' });
+  if (d.toDateString() === today.toDateString()) return t.conditions.today;
+  if (d.toDateString() === tomorrow.toDateString()) return t.conditions.tomorrow;
+  return d.toLocaleString(t.locale, { weekday: 'long', month: 'short', day: 'numeric' });
 }
 
 function dayKey(iso: string): string {
@@ -46,7 +47,7 @@ interface Entry {
 export default function ConditionsCard({ hourly, wind, shoreDirection }: ConditionsCardProps) {
   const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
 
-  const entries: Entry[] = hourly.time.map((t, i) => {
+  const entries: Entry[] = hourly.time.map((time, i) => {
     const input: ConditionsInput = {
       waveHeight:     hourly.wave_height[i]          ?? 0,
       swellHeight:    hourly.swell_wave_height[i]    ?? 0,
@@ -56,7 +57,7 @@ export default function ConditionsCard({ hourly, wind, shoreDirection }: Conditi
       windDirection:  wind.wind_direction_10m[i]     ?? 0,
       shoreDirection,
     };
-    return { time: t, score: scoreConditions(input), input };
+    return { time, score: scoreConditions(input), input };
   });
 
   // Every-3-hour display entries, daylight hours only (06:00–21:00)
@@ -66,7 +67,7 @@ export default function ConditionsCard({ hourly, wind, shoreDirection }: Conditi
     return hour >= 6 && hour <= 21;
   });
 
-  // Best windows: top 3 slots by score (min 35), sorted by time for display
+  // Best windows: top 5 slots by score (min 35), sorted by time for display
   const bestWindows = [...display]
     .filter((e) => e.score >= 35)
     .sort((a, b) => b.score - a.score)
@@ -92,13 +93,13 @@ export default function ConditionsCard({ hourly, wind, shoreDirection }: Conditi
   return (
     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-4">
       <h3 className="text-base font-semibold text-gray-900 mb-3 flex items-center gap-2">
-        <span>⭐</span> Conditions (7 days)
+        <span>⭐</span> {t.conditions.title}
       </h3>
 
       {/* Best windows summary */}
       {bestWindows.length > 0 && (
         <div className="mb-4 p-3 bg-ocean-50 rounded-xl border border-ocean-100">
-          <p className="text-xs font-semibold text-ocean-700 mb-2 uppercase tracking-wide">Best windows</p>
+          <p className="text-xs font-semibold text-ocean-700 mb-2 uppercase tracking-wide">{t.conditions.bestWindows}</p>
           <div className="flex flex-wrap gap-2">
             {bestWindows.map((e) => {
               const { bar, text } = scoreColor(e.score);
@@ -124,7 +125,7 @@ export default function ConditionsCard({ hourly, wind, shoreDirection }: Conditi
             <div className="space-y-1">
               {day.entries.map(({ displayIdx, ...e }) => {
                 const { bar, text } = scoreColor(e.score);
-                const label = scoreLabel(e.score);
+                const label = getScoreLabel(e.score);
                 const isOpen = selectedIdx === displayIdx;
 
                 return (
@@ -153,7 +154,7 @@ export default function ConditionsCard({ hourly, wind, shoreDirection }: Conditi
                     {isOpen && (
                       <div className="mx-2 mb-2 mt-0.5 rounded-lg bg-gray-50 border border-gray-100 px-3 py-2.5">
                         <p className="text-xs text-gray-600 leading-relaxed">
-                          {describeConditions(e.input)}
+                          {currentLang === 'es' ? describeConditionsEs(e.input) : describeConditions(e.input)}
                         </p>
                       </div>
                     )}

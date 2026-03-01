@@ -1,4 +1,5 @@
 import type { HourlyWind } from '../../types';
+import { t } from '../../i18n';
 
 function degToCompass(deg: number): string {
   const dirs = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
@@ -7,7 +8,7 @@ function degToCompass(deg: number): string {
 
 function formatTime(iso: string): string {
   const d = new Date(iso);
-  return d.toLocaleString([], { weekday: 'short', hour: '2-digit', minute: '2-digit' });
+  return d.toLocaleString(t.locale, { weekday: 'short', hour: '2-digit', minute: '2-digit' });
 }
 
 function windEmoji(speed: number): string {
@@ -22,8 +23,8 @@ interface WindCardProps {
 }
 
 export default function WindCard({ wind }: WindCardProps) {
-  const entries = wind.time.map((t, i) => ({
-    time: t,
+  const entries = wind.time.map((time, i) => ({
+    time,
     speed: wind.wind_speed_10m[i],
     dir: wind.wind_direction_10m[i],
     gust: wind.wind_gusts_10m[i],
@@ -38,16 +39,16 @@ export default function WindCard({ wind }: WindCardProps) {
   return (
     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-4">
       <h3 className="text-base font-semibold text-gray-900 mb-3 flex items-center gap-2">
-        <span>💨</span> Wind (7 days)
+        <span>💨</span> {t.wind.title}
       </h3>
       <div className="overflow-x-auto">
         <table className="w-full text-sm min-w-[400px]">
           <thead>
             <tr className="text-xs text-gray-500 border-b border-gray-100">
-              <th className="text-left pb-2 font-medium">Time</th>
-              <th className="text-right pb-2 font-medium">Speed (km/h)</th>
-              <th className="text-right pb-2 font-medium">Gust</th>
-              <th className="text-right pb-2 font-medium">Direction</th>
+              <th className="text-left pb-2 font-medium">{t.wind.colTime}</th>
+              <th className="text-right pb-2 font-medium">{t.wind.colSpeed}</th>
+              <th className="text-right pb-2 font-medium">{t.wind.colGust}</th>
+              <th className="text-right pb-2 font-medium">{t.wind.colDir}</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-50">
